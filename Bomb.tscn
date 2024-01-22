@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc7ws4vc5wm26"]
+
+[ext_resource type="Script" path="res://Bomb.gd" id="1_cldpy"]
+[ext_resource type="BoxMesh" uid="uid://bd7l25hw3na4x" path="res://bomb_body_mesh.tres" id="2_gasse"]
+[ext_resource type="BoxMesh" uid="uid://cmqyyqtet7wro" path="res://wick.tres" id="3_1aq6n"]
+[ext_resource type="Shape3D" uid="uid://effqqdo6qo3d" path="res://bomb_collision.tres" id="3_elbol"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7q3bo"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mkdmb"]
+
+[node name="Bomb" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_cldpy")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = ExtResource("2_gasse")
+
+[node name="Wick" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 1.36183, 0)
+mesh = ExtResource("3_1aq6n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = ExtResource("3_elbol")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_7q3bo")
+
+[node name="Explode" type="Area3D" parent="." groups=["Bomb"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Explode"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("SphereShape3D_mkdmb")

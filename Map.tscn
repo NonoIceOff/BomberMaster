@@ -1,0 +1,186 @@
+[gd_scene load_steps=12 format=3 uid="uid://cydwenxlf020u"]
+
+[ext_resource type="PlaneMesh" uid="uid://cqdm70gta3l74" path="res://ground.tres" id="1_587y3"]
+[ext_resource type="Script" path="res://Map.gd" id="1_v8nb2"]
+[ext_resource type="Material" uid="uid://byuax7g11k1ww" path="res://lava_skin.tres" id="3_cg0ic"]
+[ext_resource type="Material" uid="uid://oplk2qld67ch" path="res://wall_skin.tres" id="3_wf1u1"]
+[ext_resource type="PackedScene" uid="uid://otovyjfe72lg" path="res://Mur.tscn" id="5_v1xbm"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_pwjms"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3n34f"]
+material = ExtResource("3_cg0ic")
+size = Vector2(250, 250)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_okli1"]
+size = Vector3(1, 3, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gcu33"]
+lightmap_size_hint = Vector2i(509, 526)
+material = ExtResource("3_wf1u1")
+size = Vector3(1, 3, 50)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgseq"]
+bg_color = Color(1, 0.25098, 0.647059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vpoe"]
+bg_color = Color(0, 0.721569, 0.333333, 1)
+
+[node name="Map" type="Node"]
+script = ExtResource("1_v8nb2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -0.69333, 3.73327, 1.09964)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_pwjms")
+
+[node name="Ground" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = ExtResource("1_587y3")
+skeleton = NodePath("../..")
+
+[node name="Ground2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("PlaneMesh_3n34f")
+skeleton = NodePath("../..")
+
+[node name="Mur1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Mur1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_okli1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mur1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_gcu33")
+skeleton = NodePath("../../StaticBody3D")
+
+[node name="Mur2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Mur2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_okli1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mur2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_gcu33")
+skeleton = NodePath("../../StaticBody3D")
+
+[node name="Mur3" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 24.5)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Mur3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_okli1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mur3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_gcu33")
+skeleton = NodePath("../../StaticBody3D")
+
+[node name="Mur4" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -24.5)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Mur4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_okli1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mur4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_gcu33")
+skeleton = NodePath("../../StaticBody3D")
+
+[node name="Mur" parent="." instance=ExtResource("5_v1xbm")]
+
+[node name="LobbyText" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+billboard = 1
+text = "Bienvenue au lobby !
+Veuillez attendre les instructions de l'hébergeur de partie."
+font_size = 64
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 336.0
+offset_top = 227.0
+offset_right = -336.0
+offset_bottom = -227.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Address to join Here"
+alignment = 1
+caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 340.0
+offset_top = 11.0
+offset_right = -340.0
+offset_bottom = -610.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_tgseq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2vpoe")
+max_value = 3.0
+value = 3.0
+show_percentage = false
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Player.tscn", "res://Bomb.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

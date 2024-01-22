@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://by8cka3dh6fk5"]
+
+[ext_resource type="Script" path="res://explode_particle.gd" id="1_3vqm2"]
+[ext_resource type="Material" uid="uid://byuax7g11k1ww" path="res://lava_skin.tres" id="1_oukl4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u6ap5"]
+material = ExtResource("1_oukl4")
+
+[node name="ExplodeParticle" type="Node3D"]
+script = ExtResource("1_3vqm2")
+
+[node name="Explosion" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+amount = 20
+mesh = SubResource("BoxMesh_u6ap5")
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 180.0
+gravity = Vector3(0, -1, 0)
+scale_amount_min = 0.5
+hue_variation_min = -1.0
+hue_variation_max = 1.0

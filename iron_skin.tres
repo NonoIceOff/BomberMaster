@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b03jln6jgnnmd"]
+
+[ext_resource type="Texture2D" uid="uid://bht55k22qb3nj" path="res://Textures/Blocks/iron_block.png" id="1_8r5xv"]
+
+[resource]
+albedo_texture = ExtResource("1_8r5xv")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0

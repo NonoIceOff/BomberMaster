@@ -1,0 +1,7 @@
+[gd_resource type="BoxMesh" load_steps=2 format=3 uid="uid://d0w5q0m1i6o35"]
+
+[ext_resource type="Material" uid="uid://b03jln6jgnnmd" path="res://iron_skin.tres" id="1_i4lvn"]
+
+[resource]
+material = ExtResource("1_i4lvn")
+size = Vector3(0.8, 0.1, 0.1)

@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsxgarj6hhcyj"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_qfh0k"]
+[ext_resource type="Shape3D" uid="uid://cdmth14eonnbt" path="res://player_collision.tres" id="2_8b8o7"]
+[ext_resource type="BoxMesh" uid="uid://dmoj7dq2pa3gy" path="res://body_mesh.tres" id="2_hwv7x"]
+[ext_resource type="BoxMesh" uid="uid://bt1efxveagtq7" path="res://arm_mesh.tres" id="2_tx8pg"]
+[ext_resource type="BoxMesh" uid="uid://d0w5q0m1i6o35" path="res://propellers_mesh.tres" id="4_u38rg"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7q3bo"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+properties/2/path = NodePath("Camera3D:rotation")
+properties/2/spawn = true
+properties/2/sync = true
+properties/2/watch = false
+properties/3/path = NodePath("Body/Label3D:text")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_qfh0k")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 11, 5)
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = ExtResource("2_hwv7x")
+
+[node name="Label3D" type="Label3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.970141, 0)
+offset = Vector2(0, 64)
+billboard = 1
+text = "PLAYER"
+font_size = 64
+uppercase = true
+
+[node name="Arm" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+mesh = ExtResource("2_tx8pg")
+skeleton = NodePath("../..")
+
+[node name="Propellers" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+mesh = ExtResource("4_u38rg")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1, 0)
+shape = ExtResource("2_8b8o7")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_7q3bo")
+
+[node name="Area3D" type="Area3D" parent="." groups=["Player"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1, 0)
+shape = ExtResource("2_8b8o7")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
