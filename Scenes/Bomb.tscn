@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cc7ws4vc5wm26"]
 
-[ext_resource type="Script" path="res://Bomb.gd" id="1_cldpy"]
-[ext_resource type="BoxMesh" uid="uid://bd7l25hw3na4x" path="res://bomb_body_mesh.tres" id="2_gasse"]
-[ext_resource type="BoxMesh" uid="uid://cmqyyqtet7wro" path="res://wick.tres" id="3_1aq6n"]
-[ext_resource type="Shape3D" uid="uid://effqqdo6qo3d" path="res://bomb_collision.tres" id="3_elbol"]
+[ext_resource type="Script" path="res://Script/Bomb.gd" id="1_n8hl0"]
+[ext_resource type="BoxMesh" uid="uid://bd7l25hw3na4x" path="res://Ressources/bomb_body_mesh.tres" id="2_gasse"]
+[ext_resource type="BoxMesh" uid="uid://cmqyyqtet7wro" path="res://Ressources/wick.tres" id="3_1aq6n"]
+[ext_resource type="Shape3D" uid="uid://effqqdo6qo3d" path="res://Ressources/bomb_collision.tres" id="3_elbol"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7q3bo"]
 properties/0/path = NodePath(".:position")
@@ -19,7 +19,7 @@ properties/1/watch = false
 
 [node name="Bomb" type="CharacterBody3D"]
 collision_layer = 2
-script = ExtResource("1_cldpy")
+script = ExtResource("1_n8hl0")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

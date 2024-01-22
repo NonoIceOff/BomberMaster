@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dsxgarj6hhcyj"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_qfh0k"]
-[ext_resource type="Shape3D" uid="uid://cdmth14eonnbt" path="res://player_collision.tres" id="2_8b8o7"]
-[ext_resource type="BoxMesh" uid="uid://dmoj7dq2pa3gy" path="res://body_mesh.tres" id="2_hwv7x"]
-[ext_resource type="BoxMesh" uid="uid://bt1efxveagtq7" path="res://arm_mesh.tres" id="2_tx8pg"]
-[ext_resource type="BoxMesh" uid="uid://d0w5q0m1i6o35" path="res://propellers_mesh.tres" id="4_u38rg"]
+[ext_resource type="Script" path="res://Script/Player.gd" id="1_rstmc"]
+[ext_resource type="Shape3D" uid="uid://cdmth14eonnbt" path="res://Ressources/player_collision.tres" id="2_8b8o7"]
+[ext_resource type="BoxMesh" uid="uid://dmoj7dq2pa3gy" path="res://Ressources/body_mesh.tres" id="2_hwv7x"]
+[ext_resource type="BoxMesh" uid="uid://bt1efxveagtq7" path="res://Ressources/arm_mesh.tres" id="2_tx8pg"]
+[ext_resource type="BoxMesh" uid="uid://d0w5q0m1i6o35" path="res://Ressources/propellers_mesh.tres" id="4_u38rg"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7q3bo"]
 properties/0/path = NodePath(".:position")
@@ -26,7 +26,7 @@ properties/3/watch = false
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
-script = ExtResource("1_qfh0k")
+script = ExtResource("1_rstmc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 11, 5)

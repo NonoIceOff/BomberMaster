@@ -7,8 +7,8 @@ var explode_timer = 200
 
 var dir = 0
 
-var Player = load("res://Player.tscn")
-var Particle = load("res://explode_particle.tscn")
+var Player = load("res://Scenes/Player.tscn")
+var Particle = load("res://Scenes/explode_particle.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")

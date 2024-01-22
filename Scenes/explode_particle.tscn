@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://by8cka3dh6fk5"]
 
-[ext_resource type="Script" path="res://explode_particle.gd" id="1_3vqm2"]
-[ext_resource type="Material" uid="uid://byuax7g11k1ww" path="res://lava_skin.tres" id="1_oukl4"]
+[ext_resource type="Material" uid="uid://byuax7g11k1ww" path="res://Ressources/lava_skin.tres" id="1_oukl4"]
+[ext_resource type="Script" path="res://Script/explode_particle.gd" id="1_w6i4v"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u6ap5"]
 material = ExtResource("1_oukl4")
 
 [node name="ExplodeParticle" type="Node3D"]
-script = ExtResource("1_3vqm2")
+script = ExtResource("1_w6i4v")
 
 [node name="Explosion" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

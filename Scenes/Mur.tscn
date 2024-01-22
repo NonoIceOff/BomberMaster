@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://otovyjfe72lg"]
 
-[ext_resource type="Material" uid="uid://ulelgfum5a2x" path="res://wall_cracked_skin.tres" id="1_dbuyf"]
-[ext_resource type="Script" path="res://Mur.gd" id="1_wilbi"]
+[ext_resource type="Script" path="res://Script/Mur.gd" id="1_10uj8"]
+[ext_resource type="Material" uid="uid://ulelgfum5a2x" path="res://Ressources/wall_cracked_skin.tres" id="1_dbuyf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5vvme"]
 
@@ -10,7 +10,7 @@ lightmap_size_hint = Vector2i(509, 526)
 material = ExtResource("1_dbuyf")
 
 [node name="Mur" type="RigidBody3D"]
-script = ExtResource("1_wilbi")
+script = ExtResource("1_10uj8")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

@@ -4,8 +4,8 @@ signal health_changed(health_value)
 
 @onready var camera = $Camera3D
 
-const Bomb = preload("res://Bomb.tscn")
-const Mur = preload("res://Mur.tscn")
+const Bomb = preload("res://Scenes/Bomb.tscn")
+const Mur = preload("res://Scenes/Mur.tscn")
 
 var rng = RandomNumberGenerator.new()
 var wfocus = false

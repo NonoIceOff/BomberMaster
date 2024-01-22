@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://cydwenxlf020u"]
 
-[ext_resource type="PlaneMesh" uid="uid://cqdm70gta3l74" path="res://ground.tres" id="1_587y3"]
+[ext_resource type="PlaneMesh" uid="uid://cqdm70gta3l74" path="res://Ressources/ground.tres" id="1_587y3"]
 [ext_resource type="Script" path="res://Map.gd" id="1_v8nb2"]
-[ext_resource type="Material" uid="uid://byuax7g11k1ww" path="res://lava_skin.tres" id="3_cg0ic"]
-[ext_resource type="Material" uid="uid://oplk2qld67ch" path="res://wall_skin.tres" id="3_wf1u1"]
-[ext_resource type="PackedScene" uid="uid://otovyjfe72lg" path="res://Mur.tscn" id="5_v1xbm"]
+[ext_resource type="Material" uid="uid://byuax7g11k1ww" path="res://Ressources/lava_skin.tres" id="3_cg0ic"]
+[ext_resource type="Material" uid="uid://oplk2qld67ch" path="res://Ressources/wall_skin.tres" id="3_wf1u1"]
+[ext_resource type="PackedScene" uid="uid://otovyjfe72lg" path="res://Scenes/Mur.tscn" id="5_v1xbm"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_pwjms"]
 
@@ -178,7 +178,6 @@ value = 3.0
 show_percentage = false
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Player.tscn", "res://Bomb.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
