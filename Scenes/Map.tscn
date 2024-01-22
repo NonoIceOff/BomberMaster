@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cydwenxlf020u"]
+[gd_scene load_steps=14 format=3 uid="uid://cydwenxlf020u"]
 
 [ext_resource type="PlaneMesh" uid="uid://cqdm70gta3l74" path="res://Ressources/ground.tres" id="1_587y3"]
 [ext_resource type="Script" path="res://Map.gd" id="1_v8nb2"]
 [ext_resource type="Material" uid="uid://byuax7g11k1ww" path="res://Ressources/lava_skin.tres" id="3_cg0ic"]
 [ext_resource type="Material" uid="uid://oplk2qld67ch" path="res://Ressources/wall_skin.tres" id="3_wf1u1"]
 [ext_resource type="PackedScene" uid="uid://otovyjfe72lg" path="res://Scenes/Mur.tscn" id="5_v1xbm"]
+[ext_resource type="Texture2D" uid="uid://de1xyp04dpivk" path="res://Textures/life_bar_none.png" id="6_6hfw3"]
+[ext_resource type="Texture2D" uid="uid://dutjhtqfuek1" path="res://Textures/life_bar_full.png" id="7_gb6tn"]
+[ext_resource type="Script" path="res://Scenes/Hoster.gd" id="8_k4dmu"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_pwjms"]
 
@@ -20,11 +23,8 @@ lightmap_size_hint = Vector2i(509, 526)
 material = ExtResource("3_wf1u1")
 size = Vector3(1, 3, 50)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgseq"]
-bg_color = Color(1, 0.25098, 0.647059, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vpoe"]
-bg_color = Color(0, 0.721569, 0.333333, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08x5t"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Map" type="Node"]
 script = ExtResource("1_v8nb2")
@@ -108,6 +108,7 @@ font_size = 64
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -119,6 +120,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+texture_filter = 1
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
@@ -126,24 +128,29 @@ theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+texture_filter = 1
 layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 text = "Host"
 
 [node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 text = "Join"
 
 [node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 placeholder_text = "Enter Address to join Here"
 alignment = 1
@@ -151,7 +158,6 @@ caret_blink = true
 caret_blink_interval = 0.5
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -160,26 +166,165 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/HUD"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 340.0
-offset_top = 11.0
-offset_right = -340.0
-offset_bottom = -610.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -1016.0
+offset_bottom = -624.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_tgseq")
-theme_override_styles/fill = SubResource("StyleBoxFlat_2vpoe")
+scale = Vector2(2, 2)
 max_value = 3.0
 value = 3.0
+texture_under = ExtResource("6_6hfw3")
+texture_progress = ExtResource("7_gb6tn")
+
+[node name="Hoster" type="Control" parent="CanvasLayer/HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_k4dmu")
+
+[node name="LaunchingButton" type="Button" parent="CanvasLayer/HUD/Hoster"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 264.0
+offset_bottom = 79.0
+text = "Lancer la partie"
+
+[node name="PlayersBars" type="ProgressBar" parent="CanvasLayer/HUD/Hoster"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 80.0
+offset_right = 264.0
+offset_bottom = 107.0
+max_value = 4.0
+step = 1.0
+value = 1.0
 show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD/Hoster/PlayersBars"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 27.0
+text = "Joueurs 1/4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameSettings" type="Button" parent="CanvasLayer/HUD/Hoster"]
+texture_filter = 1
+offset_left = 8.0
+offset_top = 120.0
+offset_right = 264.0
+offset_bottom = 151.0
+text = "Options de la partie"
+
+[node name="GameSettingsPanel" type="PanelContainer" parent="CanvasLayer/HUD/Hoster"]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 128.0
+offset_right = 856.0
+offset_bottom = 472.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/Hoster/GameSettingsPanel"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/Hoster/GameSettingsPanel/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD/Hoster/GameSettingsPanel/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Options de la partie"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HasSquads" type="CheckButton" parent="CanvasLayer/HUD/Hoster/GameSettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Jeu en équipe"
+
+[node name="HasBombs" type="CheckButton" parent="CanvasLayer/HUD/Hoster/GameSettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Activer les bombes"
+
+[node name="RoundsNumbers" type="SpinBox" parent="CanvasLayer/HUD/Hoster/GameSettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 3.0
+max_value = 9.0
+step = 2.0
+value = 3.0
+suffix = "manches"
+
+[node name="Button" type="Button" parent="CanvasLayer/HUD/Hoster/GameSettingsPanel/MarginContainer/VBoxContainer"]
+modulate = Color(0.294118, 1, 0.435294, 1)
+layout_mode = 2
+text = "VALIDER"
+
+[node name="Squads" type="Control" parent="CanvasLayer/HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="1" type="Panel" parent="CanvasLayer/HUD/Squads"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 1072.0
+offset_top = 16.0
+offset_right = 1136.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_08x5t")
+
+[node name="2" type="Panel" parent="CanvasLayer/HUD/Squads"]
+modulate = Color(0, 0.113725, 0.952941, 1)
+offset_left = 992.0
+offset_top = 16.0
+offset_right = 1056.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_08x5t")
+
+[node name="3" type="Panel" parent="CanvasLayer/HUD/Squads"]
+modulate = Color(1, 1, 0, 1)
+offset_left = 912.0
+offset_top = 16.0
+offset_right = 976.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_08x5t")
+
+[node name="4" type="Panel" parent="CanvasLayer/HUD/Squads"]
+modulate = Color(1, 0.113725, 0.952941, 1)
+offset_left = 832.0
+offset_top = 16.0
+offset_right = 896.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_08x5t")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HUD/Hoster/GameSettings" to="CanvasLayer/HUD/Hoster" method="_on_game_settings_pressed"]
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
